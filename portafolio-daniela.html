@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniela Cancio · Diseño Editorial</title>
+<meta name="description" content="Portafolio de diseño editorial: revistas, catálogos, libros, folletos, tarjetas, invitaciones y museografía.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=DM+Serif+Display:ital@0;1&family=Italianno&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --gris:        #D0CFCD;
+    --gris-claro:  #E8E7E5;
+    --gris-suave:  #F4F3F1;
+    --gris-bg:     #DCDCDA;
+    --azul:        #384C67;
+    --azul-hover:  #2A3A50;
+    --turquesa:    #4FB5BE;
+    --turquesa-h:  #3FA0A9;
+    --tinta:       #1A1A1A;
+    --tinta-suave: #4A4A4A;
+    --blanco:      #FFFFFF;
+    --linea:       rgba(26,26,26,0.12);
+
+    --serif:  "Cormorant Garamond", Georgia, serif;
+    --serif-display: "DM Serif Display", "Cormorant Garamond", Georgia, serif;
+    --script: "Italianno", "Cormorant Garamond", cursive;
+    --sans:   "Montserrat", system-ui, -apple-system, sans-serif;
+
+    --pad-x: clamp(20px, 5vw, 80px);
+  }
+
+  /* ============ RESET ============ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--tinta);
+    background: var(--blanco);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+  /* ============ NAV ============ */
+  .nav{
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    padding: 18px var(--pad-x);
+    background: rgba(220,220,218,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .nav-links{ display:flex; gap: clamp(20px, 5vw, 80px); }
+  .nav-links a{
+    font-family: var(--sans);
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--tinta);
+    position: relative;
+    padding: 6px 0;
+    transition: color .25s ease;
+  }
+  .nav-links a.active,
+  .nav-links a:hover{ color: var(--azul); }
+  .nav-links a.active::after{
+    content:"";
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 1px; background: var(--azul);
+  }
+  .nav-toggle{
+    display:none;
+    position: absolute; right: var(--pad-x);
+    font-size: 1.5rem; color: var(--tinta);
+  }
+
+  @media (max-width: 768px){
+    .nav{ justify-content: flex-start; }
+    .nav-toggle{ display:block; }
+    .nav-links{
+      position:absolute; top: 100%; left:0; right:0;
+      flex-direction: column;
+      background: var(--gris-bg);
+      padding: 24px var(--pad-x);
+      transform: translateY(-150%);
+      transition: transform .35s ease;
+      gap: 18px;
+    }
+    .nav-links.open{ transform: translateY(0); }
+  }
+
+  /* ============ HERO con imagen de fondo ============ */
+  .hero{
+    position: relative;
+    min-height: 100vh;
+    padding: 140px var(--pad-x) 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #F0EBDF;
+    background-image: url("hero-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  /* Capa para mejorar legibilidad */
+  .hero::before{
+    content:"";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(240,235,223,0.55) 0%, rgba(240,235,223,0.85) 70%, rgba(240,235,223,0.95) 100%);
+    pointer-events: none;
+  }
+  .hero > *{ position: relative; z-index: 1; }
+
+  .hero-title-wrap{
+    margin-bottom: 24px;
+    line-height: 1;
+  }
+  .hero-script{
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: clamp(3.4rem, 8.5vw, 7.5rem);
+    font-weight: 400;
+    color: var(--tinta);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .hero-historias{
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: clamp(3.6rem, 9vw, 8rem);
+    font-weight: 400;
+    color: var(--azul);
+    letter-spacing: -0.02em;
+    line-height: .95;
+    display: block;
+    margin-top: .05em;
+  }
+
+  /* Subtítulo en Montserrat - debajo del título */
+  .hero-subtitle{
+    font-family: var(--sans);
+    font-size: clamp(.78rem, 1.1vw, .95rem);
+    font-weight: 600;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--tinta-suave);
+    margin: 16px 0 36px;
+  }
+
+  /* Descripción centrada con hipervínculos */
+  .hero-desc{
+    font-family: var(--sans);
+    font-size: clamp(.92rem, 1.1vw, 1rem);
+    font-weight: 400;
+    color: var(--tinta);
+    line-height: 1.7;
+    max-width: 56ch;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  .hero-desc .link{
+    color: var(--azul);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .hero-desc .link:hover{
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
+  }
+  .hero-desc strong{
+    color: var(--azul);
+    font-weight: 700;
+  }
+
+  /* Botón principal (azul) — para volver a turquesa cambia 'var(--azul)' por 'var(--turquesa)' y 'var(--azul-hover)' por 'var(--turquesa-h)' */
+  .btn-turquesa{
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 38px;
+    background: var(--azul);
+    color: var(--blanco);
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    border-radius: 999px;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .btn-turquesa:hover{ background: var(--azul-hover); transform: translateY(-2px); }
+
+  /* ============ SECCIONES grandes ============ */
+  section{
+    position: relative;
+    padding: 100px var(--pad-x) 120px;
+  }
+
+  .big-title{
+    font-family: var(--sans);
+    font-size: clamp(3rem, 10vw, 9rem);
+    font-weight: 900;
+    color: var(--azul);
+    text-transform: uppercase;
+    line-height: .9;
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin: 0 0 80px;
+  }
+
+  /* ============ PORTAFOLIO ============ */
+  .portafolio{
+    background: var(--blanco);
+  }
+  .portafolio-intro{
+    font-family: var(--sans);
+    font-size: clamp(.92rem, 1.1vw, 1rem);
+    color: var(--tinta-suave);
+    max-width: 50ch;
+    margin: 0 auto 80px;
+    text-align: center;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* ===== CARRUSEL DE CATEGORÍAS ===== */
+  .cat-carrusel-wrap{
+    position: relative;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  .cat-carrusel{
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+  .cat-carrusel::-webkit-scrollbar{ display: none; }
+
+  .cat-card{
+    flex: 0 0 clamp(240px, 40vw, 440px);
+    scroll-snap-align: start;
+    aspect-ratio: 3/4;
+    background: var(--gris-suave);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 2px;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .cat-card:hover{ transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.13); }
+
+  .cat-card-bg{
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, var(--gris-claro) 0%, var(--gris) 100%);
+    transition: filter .3s ease;
+  }
+  /* Overlay azul al hacer hover */
+  .cat-card-overlay{
+    position: absolute; inset: 0;
+    background: rgba(56,76,103,0);
+    transition: background .3s ease;
+  }
+  .cat-card:hover .cat-card-overlay{
+    background: rgba(56,76,103,0.72);
+  }
+  .cat-card-body{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px 28px;
+    color: var(--blanco);
+  }
+  .cat-card-title{
+    font-family: var(--sans);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+
+  /* ===== VISTA GALERÍA (página interna) ===== */
+  .galeria-view{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--blanco);
+    z-index: 200;
+    overflow-y: auto;
+    animation: fade-in .3s ease;
+  }
+  .galeria-view.open{ display: block; }
+
+  @keyframes fade-in{
+    from{ opacity: 0; transform: translateY(16px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .galeria-header{
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px var(--pad-x);
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--linea);
+  }
+  .galeria-back{
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--sans);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--tinta);
+    cursor: pointer;
+    transition: color .2s ease;
+    background: none; border: none; padding: 0;
+  }
+  .galeria-back:hover{ color: var(--azul); }
+  .galeria-back svg{ width: 18px; height: 18px; }
+
+  .galeria-title{
+    font-family: var(--sans);
+    font-size: clamp(.9rem, 1.5vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--tinta);
+  }
+
+  .galeria-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 3px;
+  }
+  @media (max-width: 768px){
+    .galeria-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px){
+    .galeria-grid{ grid-template-columns: 1fr; }
+  }
+
+  .galeria-item{
+    aspect-ratio: 4/5;
+    background: var(--gris-suave);
+    position: relative;
+    overflow: hidden;
+  }
+  .galeria-item-bg{
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gris-suave) 0%, var(--gris) 100%);
+  }
+  /* Para museografía algunos items más anchos */
+  .galeria-grid.museo .galeria-item:nth-child(3n+1){
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  @media (max-width: 768px){
+    .galeria-grid.museo .galeria-item:nth-child(3n+1){
+      grid-column: span 1;
+      aspect-ratio: 4/5;
+    }
+  }
+
+  /* ============ SOBRE MÍ ============ */
+  .sobre{
+    background: var(--gris-suave);
+    overflow: hidden;
+  }
+  .sobre-grid{
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 0;
+  }
+  .sobre-foto{
+    position: relative;
+    aspect-ratio: 4/5;
+    background: linear-gradient(180deg, var(--gris) 0%, var(--gris-claro) 100%);
+    overflow: hidden;
+    grid-column: 2;
+  }
+  .sobre-foto::after{
+    content:"FOTOGRAFÍA";
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size: .72rem;
+    letter-spacing: .3em;
+    color: var(--tinta-suave);
+    font-family: var(--sans);
+  }
+  .col-historia{
+    grid-column: 1;
+    padding-top: 40px;
+  }
+  .col-estudios{
+    grid-column: 3;
+    padding-top: 40px;
+    text-align: right;
+  }
+  .col-label{
+    font-family: var(--sans);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .25em;
+    color: var(--azul);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .col-historia p{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--tinta);
+    max-width: 30ch;
+  }
+  .col-estudios summary{
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--tinta);
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-left: auto;
+  }
+  .col-estudios summary::-webkit-details-marker{display:none}
+  .col-estudios summary::after{
+    content:"⌄";
+    font-size: 1.2rem;
+    transition: transform .25s ease;
+  }
+  .col-estudios details[open] summary::after{ transform: rotate(180deg); }
+  .col-estudios .estudios-list{
+    margin-top: 20px;
+  }
+  .col-estudios .estudios-list li{
+    list-style: none;
+    padding: 12px 0;
+    border-top: 1px solid var(--linea);
+    font-size: .88rem;
+    color: var(--tinta-suave);
+  }
+  .col-estudios .estudios-list li strong{
+    display: block;
+    color: var(--tinta);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 900px){
+    .sobre-grid{ grid-template-columns: 1fr; gap: 40px; }
+    .sobre-foto{ grid-column: 1; max-width: 360px; margin: 0 auto; }
+    .col-historia, .col-estudios{ grid-column: 1; padding-top: 0; text-align: left; }
+    .col-estudios summary{ margin-left: 0; }
+  }
+
+  /* ============ CONTACTO ============ */
+  .contacto{
+    background: var(--azul);
+    color: var(--blanco);
+    padding: 100px var(--pad-x) 60px;
+  }
+  .contacto-title{
+    font-family: var(--sans);
+    font-size: clamp(2.5rem, 8vw, 6.5rem);
+    font-weight: 900;
+    color: var(--blanco);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: .9;
+    letter-spacing: .02em;
+    margin-bottom: 60px;
+  }
+  .contacto-grid{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .form{
+    display: grid;
+    gap: 22px;
+  }
+  .form-group label{
+    display: block;
+    font-family: var(--sans);
+    font-size: .7rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 8px;
+    opacity: .85;
+  }
+  .form-group input,
+  .form-group textarea{
+    width: 100%;
+    padding: 12px 0;
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--blanco);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: border-color .25s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus{
+    outline: none;
+    border-bottom-color: var(--blanco);
+  }
+  .form-group textarea{ resize: vertical; min-height: 100px; }
+  .form .btn-turquesa{
+    justify-self: start;
+    margin-top: 12px;
+    background: var(--blanco);
+    color: var(--azul);
+  }
+  .form .btn-turquesa:hover{
+    background: var(--gris);
+    color: var(--azul-hover);
+  }
+
+  /* Iconos contacto */
+  .icons-row{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+    padding-top: 20px;
+  }
+  .icon-link{
+    display: flex; flex-direction: column; align-items: center;
+    gap: 8px;
+    color: var(--blanco);
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .icon-link:hover{ transform: translateY(-3px); opacity: .85; }
+  .icon-circle{
+    width: 64px; height: 64px;
+    border: 2px solid var(--blanco);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blanco);
+  }
+  .icon-circle svg{ width: 28px; height: 28px; }
+  .icon-link span{
+    font-family: var(--sans);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px){
+    .contacto-grid{ grid-template-columns: 1fr; gap: 60px; }
+    .icons-row{ flex-direction: row; justify-content: center; gap: 40px; flex-wrap: wrap; }
+  }
+
+  /* ============ FOOTER (escueto) ============ */
+  footer{
+    background: var(--azul);
+    color: var(--gris);
+    padding: 24px var(--pad-x);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    font-family: var(--sans);
+    font-size: .72rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  footer span{ color: var(--blanco); font-weight: 600; }
+
+  /* Mi historia — desplegable */
+  .historia-details{ margin-top: 0; }
+  .historia-summary{
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--azul);
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 0;
+    transition: color .2s ease;
+  }
+  .historia-summary::-webkit-details-marker{ display: none; }
+  .historia-summary::after{
+    content: "⌄";
+    font-size: 1.2rem;
+    transition: transform .3s ease;
+    display: inline-block;
+  }
+  .historia-details[open] .historia-summary::after{ transform: rotate(180deg); }
+  .historia-details[open] .historia-summary{ color: var(--tinta); }
+  .historia-texto{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--tinta);
+    max-width: 30ch;
+    margin-top: 16px;
+    animation: fadein-down .35s ease;
+  }
+  @keyframes fadein-down{
+    from{ opacity: 0; transform: translateY(-8px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ ANIMACIONES SCROLL ============ */
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV (sin etiqueta HERO) ============ -->
+<nav class="nav" aria-label="Navegación principal">
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#inicio" class="active">Inicio</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#sobre">Sobre Mí</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- ============ HERO con imagen de fondo y contenido centrado ============ -->
+<header class="hero" id="inicio">
+  <div class="hero-title-wrap">
+    <span class="hero-script">Diseño que cuenta</span>
+    <span class="hero-historias">Historias</span>
+  </div>
+
+  <p class="hero-subtitle">Daniela Cancio · Diseñadora Editorial</p>
+
+  <p class="hero-desc">
+    Entre el gramaje del papel y el volumen del espacio, he curado un
+    <a href="#portafolio" class="link">PORTAFOLIO</a>
+    que revela la intención
+    <a href="#sobre" class="link">SOBRE MÍ</a>,
+    para conectar en un primer
+    <a href="#contacto" class="link">CONTACTO</a>.
+  </p>
+
+  <a href="#portafolio" class="btn-turquesa">Ver portafolio</a>
+</header>
+
+<!-- ============ PORTAFOLIO ============ -->
+<section class="portafolio" id="portafolio">
+  <h2 class="big-title reveal">Portafolio</h2>
+
+  <p class="portafolio-intro reveal">
+    Una selección de proyectos donde la tipografía, la composición y el papel cuentan la historia.
+  </p>
+
+  <!-- Carrusel de las 3 categorías -->
+  <div class="cat-carrusel-wrap reveal">
+    <div class="cat-carrusel">
+
+      <!-- Tarjeta 1 -->
+      <div class="cat-card" data-galeria="libros">
+        <div class="cat-card-bg"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-title">Libros, Revistas &amp; Catálogos</div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="cat-card" data-galeria="folletos">
+        <div class="cat-card-bg" style="background: linear-gradient(160deg, #E8E7E5 0%, #C8C7C4 100%);"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-title">Folletos, Invitaciones &amp; Tarjetas</div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="cat-card" data-galeria="museo">
+        <div class="cat-card-bg" style="background: linear-gradient(160deg, #D8DDE6 0%, #B8C0CF 100%);"></div>
+        <div class="cat-card-overlay"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-title">Museografía</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERÍA: Libros, Revistas & Catálogos ===== -->
+<div class="galeria-view" id="galeria-libros">
+  <div class="galeria-header">
+    <button class="galeria-back" data-close="galeria-libros">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver
+    </button>
+    <span class="galeria-title">Libros, Revistas &amp; Catálogos</span>
+    <div style="width:80px"></div>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item"><div class="galeria-item-bg">Libro</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Revista</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Catálogo</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Libro</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Revista</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Catálogo</div></div>
+  </div>
+</div>
+
+<!-- ===== GALERÍA: Folletos, Invitaciones & Tarjetas ===== -->
+<div class="galeria-view" id="galeria-folletos">
+  <div class="galeria-header">
+    <button class="galeria-back" data-close="galeria-folletos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver
+    </button>
+    <span class="galeria-title">Folletos, Invitaciones &amp; Tarjetas</span>
+    <div style="width:80px"></div>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item"><div class="galeria-item-bg">Folleto</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Invitación</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Tarjeta</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Plegable</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Folleto</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Tarjeta</div></div>
+  </div>
+</div>
+
+<!-- ===== GALERÍA: Museografía ===== -->
+<div class="galeria-view" id="galeria-museo">
+  <div class="galeria-header">
+    <button class="galeria-back" data-close="galeria-museo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Volver
+    </button>
+    <span class="galeria-title">Museografía</span>
+    <div style="width:80px"></div>
+  </div>
+  <div class="galeria-grid museo">
+    <div class="galeria-item"><div class="galeria-item-bg">Exposición</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Sala</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Cédula</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Curaduría</div></div>
+    <div class="galeria-item"><div class="galeria-item-bg">Vitrina</div></div>
+  </div>
+</div>
+
+
+<!-- ============ SOBRE MÍ ============ -->
+<section class="sobre" id="sobre">
+  <h2 class="big-title reveal">Sobre Mí</h2>
+
+  <div class="sobre-grid">
+    <div class="col-historia reveal">
+      <div class="col-label">Mi historia</div>
+      <details class="historia-details">
+        <summary class="historia-summary">Leer mi historia</summary>
+        <p class="historia-texto">"Mi camino en el diseño empezó con una fascinación por los libros: no solo por lo que dicen, sino por cómo se sienten en las manos. Tras concluir mis estudios, decidí volcar esa curiosidad en el diseño editorial, donde cada decisión —desde el grosor del papel hasta el interlineado— tiene un propósito."</p>
+      </details>
+    </div>
+
+    <div class="sobre-foto reveal" aria-label="Fotografía de Daniela Cancio"></div>
+
+    <div class="col-estudios reveal">
+      <div class="col-label">Estudios</div>
+      <details>
+        <summary>Ver formación</summary>
+        <ul class="estudios-list">
+          <li>
+            <strong>Universidad La Uni</strong>
+            Centro de Estudios Avanzados para la Investigación y el Conocimiento Avanzado<br>
+            Licenciatura en Diseño Gráfico, Digital y Animación · 2023–2026
+          </li>
+          <li>
+            <strong>Diplomado en Ilustración</strong>
+            2024
+          </li>
+          <li>
+            <strong>Diplomado en Animación</strong>
+            2026
+          </li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contacto" id="contacto">
+  <h2 class="contacto-title">Contacto</h2>
+
+  <div class="contacto-grid">
+    <form class="form" onsubmit="event.preventDefault(); alert('¡Gracias! Cuando subas a Wix, conecta este formulario al sistema de formularios de Wix.');">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="proyecto">Cuéntame de tu proyecto</label>
+        <textarea id="proyecto" name="proyecto" required></textarea>
+      </div>
+      <button type="submit" class="btn-turquesa">Enviar mensaje</button>
+    </form>
+
+    <div class="icons-row">
+      <a class="icon-link" href="mailto:daniela.cancio04@gmail.com" aria-label="Correo electrónico">
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="1.5"/>
+            <path d="M3 7l9 6 9-6"/>
+          </svg>
+        </span>
+        <span>Email</span>
+      </a>
+
+      <a class="icon-link" href="https://wa.me/5215610896226" aria-label="WhatsApp">
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.99.58 3.84 1.59 5.41L2 22l4.78-1.59c1.5.84 3.23 1.32 5.07 1.32h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.83 9.83 0 0 0 12.04 2zm0 18.07h-.01a8.13 8.13 0 0 1-4.16-1.14l-.3-.18-3.1 1.03 1.05-3.02-.2-.31a8.18 8.18 0 0 1-1.25-4.36c0-4.51 3.67-8.18 8.18-8.18 2.18 0 4.23.85 5.78 2.4a8.13 8.13 0 0 1 2.39 5.79c0 4.51-3.67 8.17-8.18 8.17zm4.49-6.13c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.13-.16.25-.64.8-.78.96-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.22-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.83-.2-.48-.4-.41-.55-.42l-.47-.01a.9.9 0 0 0-.66.31c-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.16 1.74 2.66 4.21 3.73.59.25 1.05.4 1.41.51.59.19 1.13.16 1.55.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/>
+          </svg>
+        </span>
+        <span>WhatsApp</span>
+      </a>
+
+      <a class="icon-link" href="https://www.behance.net/danielacancio" target="_blank" rel="noopener" aria-label="Behance">
+        <span class="icon-circle">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M9.05 8.25c0-1.42-1.06-2.4-2.6-2.4H1v12.3h5.74c1.7 0 3.13-1.07 3.13-2.91 0-1.48-.78-2.49-2.04-2.81 1.13-.45 1.74-1.31 1.74-2.18zm-5.55-.55h2.55c.69 0 1.18.41 1.18 1.13 0 .68-.45 1.13-1.18 1.13H3.5V7.7zm2.93 8.18H3.5v-2.84h2.97c.86 0 1.45.55 1.45 1.42 0 .89-.59 1.42-1.49 1.42zM18.4 9.92c-2.56 0-4.34 1.92-4.34 4.36s1.74 4.36 4.42 4.36c2.04 0 3.5-.88 4.05-2.36h-2.13c-.34.49-.97.78-1.81.78-1.21 0-2-.7-2.18-1.84h6.28c.04-.27.06-.49.06-.74 0-2.5-1.78-4.56-4.35-4.56zm-2 3.55c.21-1.05.99-1.78 2.07-1.78 1.13 0 1.83.66 2.04 1.78h-4.11zM21.5 7.7H16v1.45h5.5V7.7z"/>
+          </svg>
+        </span>
+        <span>Behance</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (escueto) ============ -->
+<footer>
+  <p>© 2026 <span>Daniela Cancio</span> · Diseño Editorial</p>
+</footer>
+
+<script>
+  // Menú móvil
+  const toggle = document.querySelector('.nav-toggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', e => {
+    if (e.target.tagName === 'A') links.classList.remove('open');
+  });
+
+  // Active link al scroll
+  const sections = document.querySelectorAll('section, header.hero');
+  const navLinkEls = document.querySelectorAll('.nav-links a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        const id = entry.target.id;
+        navLinkEls.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => obs.observe(s));
+
+  // ============ GALERÍAS ============
+  // Abrir galería al tocar una tarjeta
+  document.querySelectorAll('.cat-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = 'galeria-' + card.dataset.galeria;
+      const view = document.getElementById(id);
+      if (!view) return;
+      view.classList.add('open');
+      view.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Cerrar galería
+  document.querySelectorAll('.galeria-back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.close;
+      const view = document.getElementById(id);
+      if (view) view.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.galeria-view.open').forEach(v => {
+        v.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
